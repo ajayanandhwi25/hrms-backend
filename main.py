@@ -31,16 +31,26 @@ def get_db():
 
 @app.post("/employees")
 def add_employee(emp: schemas.EmployeeCreate, db: Session = Depends(get_db)):
-    exists = db.query(models.Employee).filter(
+    if db.query(models.Employee).filter(
         models.Employee.employee_id == emp.employee_id
-    ).first()
-    if exists:
-        raise HTTPException(status_code=400, detail="Employee ID already exists")
+    ).first():
+        raise HTTPException(
+            status_code=400,
+            detail="Employee ID already exists"
+        )
+    if db.query(models.Employee).filter(
+        models.Employee.email == emp.email
+    ).first():
+        raise HTTPException(
+            status_code=400,
+            detail="Email already exists"
+        )
 
     employee = models.Employee(**emp.dict())
     db.add(employee)
     db.commit()
-    return {"message": "Employee added"}
+    return {"message": "Employee added successfully"}
+
 
 @app.get("/employees")
 def list_employees(db: Session = Depends(get_db)):
