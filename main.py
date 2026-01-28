@@ -1,3 +1,4 @@
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
 from database import SessionLocal, engine
@@ -6,6 +7,17 @@ import models, schemas
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="HRMS Lite")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",   # local frontend
+        "https://your-frontend.vercel.app"  # prod frontend
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def get_db():
     db = SessionLocal()
