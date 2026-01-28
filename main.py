@@ -11,8 +11,8 @@ app = FastAPI(title="HRMS Lite")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173",   # local frontend
-        "https://your-frontend.vercel.app"  # prod frontend
+        "http://localhost:5173", 
+        "https://hrms-frontend-dw4gtqbxd-ajay-anands-projects-136b5f19.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
