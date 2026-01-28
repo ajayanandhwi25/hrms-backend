@@ -17,4 +17,4 @@ class Attendance(Base):
     id = Column(Integer, primary_key=True, index=True)
     employee_id = Column(String, ForeignKey("employees.employee_id"))
     date = Column(Date)
-    status = Column(String)  # Present / Absent
+    status = Column(String)
