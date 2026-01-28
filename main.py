@@ -12,7 +12,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173", 
-        "https://hrms-frontend-dw4gtqbxd-ajay-anands-projects-136b5f19.vercel.app"
+        "https://hrms-frontend-git-main-ajay-anands-projects-136b5f19.vercel.app"
+        
     ],
     allow_credentials=True,
     allow_methods=["*"],
